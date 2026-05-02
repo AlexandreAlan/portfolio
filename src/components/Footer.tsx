@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion'
 import { Github, Linkedin, MessageCircle } from 'lucide-react'
 
+const YEAR = 2026
+
 export default function Footer() {
-  const year = new Date().getFullYear()
+  const year = YEAR
   return (
     <footer className="border-t border-[rgba(255,255,255,0.04)] py-12 px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
@@ -24,7 +26,7 @@ export default function Footer() {
               <span className="font-bold text-[#f0ebe0] tracking-tight">Alexandre Alan</span>
             </div>
             <p className="font-mono text-[11px] text-[#5a5550] tracking-wide">
-              Analista de Redes N3 · Dev Full-Stack
+              Analista de Redes N2 · Software Developer
             </p>
             <p className="font-mono text-[11px] text-[#4a4540] mt-1">
               © {year} — Todos os direitos reservados

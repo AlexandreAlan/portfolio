@@ -7,7 +7,7 @@ const specialties = [
   {
     icon: <Network size={26} strokeWidth={1.5} />,
     title: 'Redes & Infraestrutura',
-    level: 'N3',
+    level: 'N2',
     description:
       'Projeto, implantação e manutenção de redes corporativas. Switching, roteamento, VLANs, QoS, VPN, monitoramento proativo e escalabilidade.',
     items: ['Switching L2/L3', 'Roteamento OSPF/BGP', 'VPN Site-to-Site', 'QoS & Traffic Shaping', 'VLAN & Segmentação'],

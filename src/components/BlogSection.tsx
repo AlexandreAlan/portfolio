@@ -5,6 +5,13 @@ import { ArrowRight, Clock } from 'lucide-react'
 import Link from 'next/link'
 import type { PostMeta } from '@/lib/posts'
 
+const MONTHS = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+
+function formatDate(dateStr: string) {
+  const [, mm, dd] = dateStr.split('-')
+  return `${dd} ${MONTHS[parseInt(mm, 10) - 1]}`
+}
+
 export default function BlogSection({ posts }: { posts: PostMeta[] }) {
   return (
     <section id="blog" className="py-28 px-6 md:px-10">
@@ -71,9 +78,7 @@ export default function BlogSection({ posts }: { posts: PostMeta[] }) {
 
                     <div className="flex items-center justify-between mt-auto pt-4 border-t border-[rgba(255,255,255,0.04)]">
                       <span className="font-mono text-[11px] text-[#5a5550]">
-                        {new Date(post.date).toLocaleDateString('pt-BR', {
-                          day: '2-digit', month: 'short', year: 'numeric',
-                        })}
+                        {formatDate(post.date)}
                       </span>
                       <span className="flex items-center gap-1 font-mono text-[11px] text-[#5a5550]">
                         <Clock size={10} /> {post.readTime}

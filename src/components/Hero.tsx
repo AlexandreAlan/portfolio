@@ -3,9 +3,12 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Github, Linkedin } from 'lucide-react'
 
+const vp = { once: true, amount: 0 }
+
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: vp,
   transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
 })
 
@@ -37,7 +40,7 @@ export default function Hero() {
 
           <div className="flex flex-col gap-3">
             <motion.p {...fade(0.2)} className="font-mono text-xs tracking-[0.25em] uppercase text-[#8a8070]">
-              Analista de Redes N3 &amp; Dev Full-Stack
+              Analista de Redes N2 &amp; Software Developer
             </motion.p>
 
             <motion.h1 {...fade(0.25)} className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.0] tracking-tight text-[#f0ebe0]">
@@ -95,35 +98,30 @@ export default function Hero() {
         {/* Right — Avatar card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={vp}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="hidden md:flex justify-center items-center"
         >
           <div className="relative">
-            {/* Outer glow ring */}
             <div className="absolute inset-0 rounded-3xl bg-[rgba(201,168,76,0.08)] blur-2xl scale-110" />
 
-            {/* Main card */}
             <div className="relative w-72 h-80 rounded-3xl glass-gold flex flex-col items-center justify-center gap-5 shadow-luxury">
-
-              {/* Avatar monogram */}
               <div className="relative">
                 <div className="absolute inset-0 rounded-2xl bg-[rgba(201,168,76,0.15)] blur-xl animate-pulse-slow" />
                 <div className="relative w-28 h-28 rounded-2xl bg-gradient-to-br from-[rgba(201,168,76,0.2)] to-[rgba(201,168,76,0.04)] border border-[rgba(201,168,76,0.3)] flex items-center justify-center">
-                  {/* Espaço reservado para foto — troque pela tag <img> quando tiver */}
                   <span className="font-mono font-black text-4xl text-[#c9a84c] text-glow-gold">AA</span>
                 </div>
               </div>
 
               <div className="text-center px-4">
                 <p className="font-bold text-[#f0ebe0] text-lg tracking-tight">Alexandre Alan</p>
-                <p className="font-mono text-xs text-[#8a8070] mt-1 tracking-wide">Analista N3 · Dev Full-Stack</p>
+                <p className="font-mono text-xs text-[#8a8070] mt-1 tracking-wide">Analista N2 · Software Developer</p>
               </div>
 
-              {/* Stats row */}
               <div className="flex gap-6 pt-1 border-t border-[rgba(201,168,76,0.1)] w-full justify-center px-6 py-3">
                 {[
-                  { val: 'N3', lbl: 'Nível' },
+                  { val: 'N2', lbl: 'Nível' },
                   { val: '24/7', lbl: 'Infra' },
                   { val: '5+', lbl: 'Anos' },
                 ].map((s) => (
@@ -140,19 +138,14 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
         <span className="font-mono text-[10px] tracking-[0.2em] text-[#5a5550] uppercase">scroll</span>
         <motion.div
           animate={{ y: [0, 7, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
           className="w-px h-10 bg-gradient-to-b from-[rgba(201,168,76,0.3)] to-transparent"
         />
-      </motion.div>
+      </div>
     </section>
   )
 }
