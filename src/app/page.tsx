@@ -1,10 +1,9 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import Specialties from '@/components/Specialties'
-import TechStack from '@/components/TechStack'
-import Projects from '@/components/Projects'
+import ServicesTeaser from '@/components/teasers/ServicesTeaser'
+import ProjectsTeaser from '@/components/teasers/ProjectsTeaser'
 import BlogSection from '@/components/BlogSection'
-import Contact from '@/components/Contact'
+import ContactTeaser from '@/components/teasers/ContactTeaser'
 import Footer from '@/components/Footer'
 import { getAllPosts } from '@/lib/posts'
 
@@ -37,7 +36,7 @@ const jsonLd = {
       '@type': 'WebSite',
       '@id': `${BASE_URL}/#website`,
       url: BASE_URL,
-      name: 'Alexandre Alan — Portfolio & Blog',
+      name: 'Alexandre Alan — Elite Infrastructure & Software Solutions',
       publisher: { '@id': `${BASE_URL}/#person` },
       inLanguage: 'pt-BR',
     },
@@ -45,7 +44,7 @@ const jsonLd = {
       '@type': 'ProfilePage',
       '@id': `${BASE_URL}/#profilepage`,
       url: BASE_URL,
-      name: 'Alexandre Alan — Portfolio & Blog',
+      name: 'Alexandre Alan — Elite Solutions',
       dateCreated: '2025-01-01',
       dateModified: '2026-05-02',
       mainEntity: { '@id': `${BASE_URL}/#person` },
@@ -71,7 +70,7 @@ const jsonLd = {
 }
 
 export default function Home() {
-  const posts = getAllPosts()
+  const posts = getAllPosts().slice(0, 3) // Show only latest 3 on home
   return (
     <>
       <script
@@ -79,13 +78,15 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main>
+      <main className="bg-[#080808]">
         <Hero />
-        <Specialties />
-        <TechStack />
-        <Projects />
-        <BlogSection posts={posts} />
-        <Contact />
+        
+        <div className="space-y-32 pb-32">
+          <ServicesTeaser />
+          <ProjectsTeaser />
+          <BlogSection posts={posts} />
+          <ContactTeaser />
+        </div>
       </main>
       <Footer />
     </>
