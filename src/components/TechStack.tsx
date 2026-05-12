@@ -84,7 +84,7 @@ export default function TechStack() {
           className="mb-12"
         >
           <p className="section-label mb-4">Ferramentas</p>
-          <h2 className="text-4xl md:text-5xl font-black text-[#e8e3d8] tracking-tight leading-none">
+          <h2 className="text-3xl md:text-4xl font-black text-[#e8e3d8] tracking-tight leading-none">
             Stack Tecnológica
           </h2>
         </motion.div>
