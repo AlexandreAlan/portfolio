@@ -51,7 +51,7 @@ export default function Specialties() {
         >
           <p className="section-label mb-4">O que eu faço</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <h2 className="text-4xl md:text-5xl font-black text-[#f0ebe0] tracking-tight leading-none">
+            <h2 className="text-3xl md:text-4xl font-black text-[#f0ebe0] tracking-tight leading-none">
               Especialidades
             </h2>
             <p className="text-[#6a6055] text-sm max-w-sm leading-relaxed md:text-right">
