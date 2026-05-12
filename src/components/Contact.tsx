@@ -36,7 +36,7 @@ export default function Contact() {
           className="mb-16"
         >
           <p className="section-label mb-4">Fale comigo</p>
-          <h2 className="text-4xl md:text-5xl font-black text-[#f0ebe0] tracking-tight leading-none">
+          <h2 className="text-3xl md:text-4xl font-black text-[#f0ebe0] tracking-tight leading-none">
             Contato
           </h2>
         </motion.div>
