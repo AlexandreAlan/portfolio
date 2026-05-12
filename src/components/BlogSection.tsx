@@ -26,7 +26,7 @@ export default function BlogSection({ posts }: { posts: PostMeta[] }) {
         >
           <div>
             <p className="section-label mb-4">Artigos</p>
-            <h2 className="text-4xl md:text-5xl font-black text-[#f0ebe0] tracking-tight leading-none">
+            <h2 className="text-3xl md:text-4xl font-black text-[#f0ebe0] tracking-tight leading-none">
               Blog & Dicas
             </h2>
           </div>
