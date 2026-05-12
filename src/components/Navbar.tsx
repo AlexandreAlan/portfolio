@@ -3,19 +3,21 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const links = [
-  { label: 'Início', href: '#hero' },
-  { label: 'Especialidades', href: '#especialidades' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Projetos', href: '#projetos' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Início', href: '/' },
+  { label: 'Serviços', href: '/servicos' },
+  { label: 'Cases', href: '/projetos' },
+  { label: 'Insights', href: '/blog' },
+  { label: 'Consultoria', href: '/contato' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -33,26 +35,43 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 md:px-10 h-[68px] flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-lg border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.06)] flex items-center justify-center group-hover:border-[rgba(201,168,76,0.5)] transition-all duration-300">
-            <span className="font-mono text-xs font-bold text-[#c9a84c]">AA</span>
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 rounded-full border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.06)] flex items-center justify-center group-hover:border-[rgba(201,168,76,0.5)] transition-all duration-300 overflow-hidden">
+            {/* Foto do Usuário — Caso queira trocar, basta subir uma imagem para /public/me.jpg */}
+            <img 
+              src="/me.jpg" 
+              alt="Alexandre Alan" 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback caso a foto não exista
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.parentElement!.innerHTML = '<span class="font-mono text-[10px] font-bold text-[#c9a84c]">AA</span>';
+              }}
+            />
           </div>
-          <span className="text-sm font-semibold text-[#f0ebe0]/80 group-hover:text-[#f0ebe0] tracking-wide transition-colors">
+          <span className="text-sm font-bold text-[#f0ebe0] group-hover:text-[#c9a84c] tracking-tight transition-colors uppercase">
             Alexandre Alan
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-0.5">
-          {links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className="px-3.5 py-2 text-[0.8rem] text-[#8a8070] hover:text-[#f0ebe0] rounded-md hover:bg-white/[0.03] transition-all duration-200 tracking-wide"
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) => {
+            const isActive = pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href))
+            return (
+              <Link
+                key={l.label}
+                href={l.href}
+                className={`px-3.5 py-2 text-[0.75rem] uppercase tracking-widest font-bold transition-all duration-200 rounded-md ${
+                  isActive 
+                    ? 'text-[#c9a84c] bg-[rgba(201,168,76,0.05)]' 
+                    : 'text-[#8a8070] hover:text-[#f0ebe0] hover:bg-white/[0.03]'
+                }`}
+              >
+                {l.label}
+              </Link>
+            )
+          })}
         </nav>
 
         {/* Mobile button */}
@@ -74,16 +93,21 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="md:hidden bg-[#0a0a0a] border-b border-white/[0.04] px-6 pb-5 pt-2"
           >
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="block py-3 text-sm text-[#8a8070] hover:text-[#f0ebe0] border-b border-white/[0.04] last:border-0 transition-colors tracking-wide"
-              >
-                {l.label}
-              </a>
-            ))}
+            {links.map((l) => {
+              const isActive = pathname === l.href
+              return (
+                <Link
+                  key={l.label}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className={`block py-3 text-sm font-bold uppercase tracking-widest border-b border-white/[0.04] last:border-0 transition-colors ${
+                    isActive ? 'text-[#c9a84c]' : 'text-[#8a8070] hover:text-[#f0ebe0]'
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              )
+            })}
           </motion.div>
         )}
       </AnimatePresence>
