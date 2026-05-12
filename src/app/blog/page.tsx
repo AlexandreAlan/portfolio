@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowLeft, Clock } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight, Clock } from 'lucide-react'
 import { getAllPosts } from '@/lib/posts'
 import type { Metadata } from 'next'
 
@@ -46,8 +46,12 @@ export default function BlogPage() {
           <div className="flex flex-col gap-4">
             {posts.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-                <article className="glass glass-hover rounded-2xl p-6 transition-all group-hover:-translate-y-0.5">
-                  <div className="flex flex-wrap gap-1.5 mb-3">
+                <article className="glass glass-hover rounded-2xl p-6 transition-all group-hover:-translate-y-0.5 relative">
+                  <ArrowUpRight
+                    size={16}
+                    className="absolute top-6 right-6 text-[#5a5550] group-hover:text-[#c9a84c] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"
+                  />
+                  <div className="flex flex-wrap gap-1.5 mb-3 pr-8">
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
