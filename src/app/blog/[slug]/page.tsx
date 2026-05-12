@@ -52,6 +52,10 @@ export default async function PostPage({ params }: Props) {
   const post = await getPostBySlug(params.slug)
   if (!post) notFound()
 
+  const allPosts = getAllPosts()
+  const currentIdx = allPosts.findIndex(p => p.slug === post.slug)
+  const nextPost = allPosts[currentIdx + 1] || allPosts[currentIdx - 1]
+
   const url = `${BASE_URL}/blog/${post.slug}`
 
   const jsonLd = {
@@ -144,6 +148,23 @@ export default async function PostPage({ params }: Props) {
           className="prose-dark"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+
+        {nextPost && (
+          <div className="mt-16 pt-8 border-t border-white/[0.06]">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-[#5a5550] mb-3">Continue lendo</p>
+            <Link href={`/blog/${nextPost.slug}`} className="group block">
+              <article className="glass glass-hover rounded-2xl p-5 flex items-start gap-4 transition-all group-hover:-translate-y-0.5">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base font-bold text-[#d4cfc5] group-hover:text-[#f0ebe0] transition-colors mb-1 tracking-tight">
+                    {nextPost.title}
+                  </h3>
+                  <p className="text-[#6a6055] text-xs leading-relaxed line-clamp-1">{nextPost.description}</p>
+                </div>
+                <span className="text-[#5a5550] group-hover:text-[#c9a84c] group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-0.5">→</span>
+              </article>
+            </Link>
+          </div>
+        )}
 
         <div className="mt-14 pt-8 border-t border-white/[0.06] flex items-center justify-between flex-wrap gap-4">
           <Link
