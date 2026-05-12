@@ -13,6 +13,8 @@ export interface PostMeta {
   description: string
   tags: string[]
   readTime: string
+  githubRepo?: string
+  rating?: number
 }
 
 export interface Post extends PostMeta {
@@ -36,6 +38,8 @@ export function getAllPosts(): PostMeta[] {
       description: data.description ?? '',
       tags: data.tags ?? [],
       readTime: data.readTime ?? '5 min',
+      githubRepo: data.githubRepo ?? null,
+      rating: data.rating ?? 5,
     } as PostMeta
   })
 
@@ -57,6 +61,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     description: data.description ?? '',
     tags: data.tags ?? [],
     readTime: data.readTime ?? '5 min',
+    githubRepo: data.githubRepo ?? null,
+    rating: data.rating ?? 5,
     content: processed.toString(),
   }
 }
