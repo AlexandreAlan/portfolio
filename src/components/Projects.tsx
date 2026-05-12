@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, Zap, Server, Bot, FlaskConical } from 'lucide-react'
+import { ExternalLink, Github, Zap, Server, Bot, FlaskConical, HardDriveDownload, Database } from 'lucide-react'
 
 type Category = 'producao' | 'laboratorio'
 
@@ -22,6 +22,26 @@ type Project = {
 }
 
 const projects = [
+  {
+    category: 'producao' as Category,
+    name: 'VexoSync',
+    tagline: 'Enterprise Backup Engine — Centralized Google Drive Sync',
+    description:
+      'Poderosa plataforma de gerenciamento de backups distribuídos. Permite conectar múltiplos servidores remotos via agentes inteligentes e orquestrar backups criptografados (AES-256) diretamente para o Google Drive. Possui site institucional dedicado, dashboard administrativo de alta performance e monitoramento em tempo real.',
+    stack: ['FastAPI', 'Next.js 15', 'Python', 'PostgreSQL', 'Docker', 'Restic', 'Google Drive API'],
+    url: 'https://www.vexosync.morenadoaco.com.br',
+    github: null, // Produto fechado
+    icon: <HardDriveDownload size={20} strokeWidth={1.5} />,
+    iconColor: 'text-[#c9a84c]',
+    iconBg: 'bg-[rgba(201,168,76,0.1)] border-[rgba(201,168,76,0.25)]',
+    stats: [{ v: 'Enterprise', l: 'Licença' }, { v: 'Multi-Srv', l: 'Arquitetura' }, { v: 'AES-256', l: 'Cipher' }],
+    highlights: [
+      'Site institucional dedicado (Marketing & Vendas)',
+      'Sistema de Agentes Remotos via CLI',
+      'Criptografia local antes do upload',
+      'Produto Comercial: Entre em contato para licenciamento.',
+    ],
+  },
   {
     category: 'producao' as Category,
     name: 'AltivaAI',
@@ -94,7 +114,7 @@ export default function Projects() {
           className="mb-16"
         >
           <p className="section-label mb-4">Portfólio</p>
-          <h2 className="text-4xl md:text-5xl font-black text-[#e8e3d8] tracking-tight leading-none">
+          <h2 className="text-3xl md:text-4xl font-black text-[#e8e3d8] tracking-tight leading-none">
             Projetos
           </h2>
           <div className="divider mt-8" />
