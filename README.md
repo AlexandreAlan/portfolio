@@ -115,6 +115,18 @@ Após adicionar o arquivo, rode `docker compose up -d --build` para publicar.
 
 ---
 
+## Segurança
+
+- **Next.js mantido atualizado**: `14.2.3`→**`14.2.35`** (CVE-2025-29927, bypass de middleware).
+- **Container não-root** (`USER nextjs`), com `cap_drop: ALL` e `no-new-privileges`.
+- **Bind apenas em `127.0.0.1:3005`** (atrás do nginx), em vez de `network_mode: host` — a porta não fica exposta em todas as interfaces.
+- `.dockerignore` evita vazar `.env`/`.git`/`node_modules` para a imagem.
+
+### Histórico de versões
+- **2026-06-25** — hardening de segurança: Next 14.2.35, container não-root, bind em loopback, `.dockerignore`.
+
+---
+
 ## Autor
 
 **Alexandre Alan** — Analista de Redes N3 & Desenvolvedor Full-Stack
