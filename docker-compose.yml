@@ -3,7 +3,14 @@ services:
     build: .
     container_name: morenadoaco_portfolio
     restart: unless-stopped
-    network_mode: host
+    # Bind apenas no loopback (nginx faz proxy p/ 127.0.0.1:3005). Evita expor a
+    # porta 3005 em todas as interfaces, como acontecia com network_mode: host.
+    ports:
+      - "127.0.0.1:3005:3005"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:3005', r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"]
       interval: 30s
