@@ -30,6 +30,10 @@ Portfólio pessoal e blog profissional de Alexandre Alan, Analista de Redes N3 e
 │   │   ├── layout.tsx          # Metadata + fontes (Inter + JetBrains Mono)
 │   │   ├── page.tsx            # Página principal
 │   │   ├── globals.css
+│   │   ├── sobre/page.tsx
+│   │   ├── servicos/page.tsx
+│   │   ├── projetos/page.tsx
+│   │   ├── contato/page.tsx
 │   │   └── blog/
 │   │       ├── page.tsx        # Listagem de posts
 │   │       └── [slug]/
@@ -42,7 +46,13 @@ Portfólio pessoal e blog profissional de Alexandre Alan, Analista de Redes N3 e
 │   │   ├── Projects.tsx        # Projetos (Produção / Laboratório)
 │   │   ├── BlogSection.tsx
 │   │   ├── Contact.tsx         # Formulário → WhatsApp
-│   │   └── Footer.tsx
+│   │   ├── Footer.tsx
+│   │   ├── LivePanel.tsx       # Painel ao vivo de status/métricas
+│   │   ├── SystemStatus.tsx
+│   │   └── teasers/
+│   │       ├── ServicesTeaser.tsx
+│   │       ├── ProjectsTeaser.tsx
+│   │       └── ContactTeaser.tsx
 │   └── lib/
 │       └── posts.ts            # Leitura dos posts Markdown
 ├── content/
